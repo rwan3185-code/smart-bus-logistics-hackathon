@@ -1,52 +1,21 @@
 import streamlit as st
 import pandas as pd
 import joblib
-st.set_page_config(
-    page_title="Smart Bus Logistics System",
-    page_icon="🚌",
-    layout="wide"
-)
 
 # تحميل المودل
 model = joblib.load("bus_model.pkl")
-st.sidebar.title("🚌 Navigation")
 
-page = st.sidebar.radio(
-    "Go to",
-    ["Home", "Prediction", "Analytics"]
-)
-if page == "Home":
-
-    st.title("🚌 Smart Bus Logistics System")
-
-    st.markdown("""
-    AI-powered logistics platform for predicting
-    bus delays and breakdown risks.
-    """)
-
-    col1, col2, col3 = st.columns(3)
-
-    col1.metric("Active Buses", "120")
-    col2.metric("Delay Reports", "35")
-    col3.metric("Breakdown Risk", "18%")
 st.title("🚌 Bus Breakdown Prediction System")
 
 st.write("Enter Bus Information")
 
 # إدخالات المستخدم
-# إدخالات المستخدم
-# إدخالات المستخدم
-if page == "Prediction":
+bus_no = st.number_input("Bus Number", min_value=0)
 
-    st.title("🚌 Bus Breakdown Prediction System")
+route_number = st.number_input("Route Number", min_value=0)
 
-    st.write("Enter Bus Information")
+delay_time = st.number_input("Delay Time (minutes)", min_value=0)
 
-    bus_no = st.number_input("Bus Number", min_value=0)
-
-    route_number = st.number_input("Route Number", min_value=0)
-
-    delay_time = st.number_input("Delay Time (minutes)", min_value=0)
 # زر التنبؤ
 if st.button("Predict"):
 
